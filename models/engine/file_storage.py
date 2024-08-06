@@ -35,24 +35,17 @@ class FileStorage:
         return self.__objects
 
     def get(self, cls, id):
-        '''Retrieve a single object'''
-        if cls is not None:
-            for value in self.__objects.values():
-                if cls == value.__class__ or cls == value.__class__.__name__:
-                    if value.id == id:
-                        return value
+        """Retrieve one object based on the class and its ID"""
+        if cls and id:
+            key = "{}.{}".format(cls.__name__, id)
+            return self.__objects.get(key, None)
         return None
 
     def count(self, cls=None):
-        '''Return the number of objects of class cls, or all if cls is None'''
-        num_objects = 0
-        if cls is not None:
-            for value in self.__objects.values():
-                if cls == value.__class__ or cls == value.__class__.__name__:
-                    num_objects = num_objects + 1
-        else:
-            num_objects = len(self.__objects)
-        return num_objects
+        """Count the number of objects in storage matching the given class"""
+        if cls:
+            return len([obj for obj in self.__objects.values() if isinstance(obj, cls)])
+        return len(self.__objects)
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
