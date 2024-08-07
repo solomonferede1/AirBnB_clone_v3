@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-'''amenities module to retrive, create, update and delete amneties'''
+"""Amenties"""
 
-from flask import jsonify, abort, request
 from models import storage
-from models.amenity import Amenity
+from flask import jsonify, abort, request
 from api.v1.views import app_views
+from models.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
@@ -15,7 +15,7 @@ def get_amenities():
 
 
 @app_views.route('/amenities/<amenity_id>',
-                 ethods=['GET'], strict_slashes=False)
+                 methods=['GET'], strict_slashes=False)
 def get_amenity(amenity_id):
     """Retrieves an Amenity object"""
     amenity = storage.get(Amenity, amenity_id)
