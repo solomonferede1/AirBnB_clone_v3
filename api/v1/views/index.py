@@ -21,6 +21,7 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 def status():
     return jsonify({'status': 'OK'})
 
+
 @app_views.route('/stats')
 def get_stats():
     """Counts the number of objects in each class and returns a JSON."""
