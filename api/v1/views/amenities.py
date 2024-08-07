@@ -1,6 +1,7 @@
-# api/v1/views/amenities.py
+#!/usr/bin/python3
+'''amenities module to retrive, create, update and delete amneties'''
 
-from flask import Flask, jsonify, abort, request
+from flask import jsonify, abort, request
 from models import storage
 from models.amenity import Amenity
 from api.v1.views import app_views
